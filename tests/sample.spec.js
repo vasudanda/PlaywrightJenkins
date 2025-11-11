@@ -46,4 +46,21 @@ test.describe('Sample App API Tests', () => {
     console.log('✓ Test Case 2 passed: Calculate endpoint works correctly');
   });
 
+  test('Test Case 3: Verify root endpoint returns welcome message', async ({ request }) => {
+    // Make a GET request to the root endpoint
+    const response = await request.get('http://localhost:3000/');
+
+    // Assert response status
+    expect(response.status()).toBe(200);
+
+    // Parse the response body
+    const body = await response.json();
+
+    // Assert expected properties
+    expect(body.message).toBe('Welcome to Playwright Sample App');
+    expect(body.status).toBe('running');
+
+    console.log('✓ Test Case 3 passed: Root endpoint returns welcome message');
+  });
+
 });
